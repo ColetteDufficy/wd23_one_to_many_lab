@@ -41,7 +41,7 @@
 
 
 --=============================================================--
--- DROP TABLE IF EXISTS bank_accounts;
+DROP TABLE IF EXISTS bank_accounts;
 DROP TABLE IF EXISTS customers; 
 DROP TABLE IF EXISTS account_types;
 
@@ -58,11 +58,11 @@ CREATE TABLE customers (
   account_type_id INT REFERENCES account_types(id)
 );
 
--- CREATE TABLE bank_accounts ( --this table creation goes second becasue the second table is referencing the ids of the first table --
---   id SERIAL PRIMARY KEY,
---   account_type_id INT REFERENCES account_types(id),
---   customer_id INT REFERENCES customers(id) 
--- );
+CREATE TABLE bank_accounts ( --this table creation goes second becasue the second table is referencing the ids of the first table --
+  id SERIAL PRIMARY KEY,
+  account_type_id INT REFERENCES account_types(id),
+  customer_id INT REFERENCES customers(id) 
+);
 
 INSERT INTO account_types (type) VALUES ('Current');
 INSERT INTO account_types (type) VALUES ('Savings');
@@ -74,4 +74,7 @@ INSERT INTO customers (name, dob, account_type_id) VALUES ('Carrie Fisher', '21-
 
 SELECT * FROM customers;
 SELECT * FROM account_types;
+
+-- SELECT account_type_id FROM bank_accounts WHERE customer_id = 1;--
+
 
