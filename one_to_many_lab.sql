@@ -21,19 +21,24 @@ CREATE TABLE movies ( --this table creation goes second becasue the second table
 
 
 
-INSERT INTO directors (name, nationality) VALUES ('Steven Spielberg', 75);
-INSERT INTO directors (name, nationality) VALUES ('Guillermo del Toro', 57);
-INSERT INTO directors (name, nationality) VALUES ('George Lucas', 77);
+INSERT INTO directors (name, nationality) VALUES ('Steven Spielberg', 'American');
+INSERT INTO directors (name, nationality) VALUES ('Guillermo del Toro', 'Mexican');
+INSERT INTO directors (name, nationality) VALUES ('George Lucas', 'American');
 
 
-INSERT INTO movies (name, nationality) VALUES ('Star Wars IV', 1977);
-INSERT INTO movies (name, nationality) VALUES ('Star Wars V', 1980);
-INSERT INTO movies (name, nationality) VALUES ('E.T.', 1982);
-INSERT INTO movies (name, nationality) VALUES ("Pan's Labyrinth", 2006);
-INSERT INTO movies (name, nationality) VALUES ("Schindler's List", 1993);
+INSERT INTO movies (name, year, director_id) VALUES ('Star Wars IV', 1977, 3);
+INSERT INTO movies (name, year, director_id) VALUES ('Star Wars V', 1980, 3);
+INSERT INTO movies (name, year, director_id) VALUES ('E.T.', 1982, 1);
+INSERT INTO movies (name, year, director_id) VALUES ('Pans Labyrinth', 2006, 2); --what can you do with an apostrophe??--
+INSERT INTO movies (name, year, director_id) VALUES ('Schindlers List', 1993, 1); --what can you do with an apostrophe??--
 
 SELECT * FROM directors;
 SELECT * FROM movies;
+SELECT * FROM movies WHERE director_id = 1;
+SELECT * FROM movies WHERE director_id = 2;
+SELECT * FROM movies WHERE director_id = 3;
+
+
 
 
 
