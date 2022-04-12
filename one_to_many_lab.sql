@@ -1,42 +1,42 @@
--- DROP TABLE movies;
--- DROP TABLE directors; --check if this is the right order, once the tables are written--
+DROP TABLE movies;
+DROP TABLE directors; 
 
--- -- **************************************************************** --
--- -- ******* Drop table that has the REFERENCES keyword first ******* --
--- -- ******* Create the same table second *************************** --
--- -- **************************************************************** --
+-- **************************************************************** --
+-- ******* Drop table that has the REFERENCES keyword first ******* --
+-- ******* Create the same table second *************************** --
+-- **************************************************************** --
 
--- CREATE TABLE directors (
---   id SERIAL PRIMARY KEY, --this means it will increment automatically, and it will keep UNIQUE id numbers--
---   name VARCHAR(255),
---   nationality VARCHAR(255)
--- );
+CREATE TABLE directors (
+  id SERIAL PRIMARY KEY, --this means it will increment automatically, and it will keep UNIQUE id numbers--
+  name VARCHAR(255),
+  nationality VARCHAR(255)
+);
 
--- CREATE TABLE movies ( --this table creation goes second becasue the second table is referencing the ids of the first table --
---   id SERIAL PRIMARY KEY,
---   name VARCHAR(255) NOT NULL, 
---   year INT NOT NULL, 
---   director_id INT REFERENCES directors(id) 
--- );
+CREATE TABLE movies ( --this table creation goes second becasue the second table is referencing the ids of the first table --
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL, 
+  year INT NOT NULL, 
+  director_id INT REFERENCES directors(id) 
+);
 
 
 
--- INSERT INTO directors (name, nationality) VALUES ('Steven Spielberg', 'American');
--- INSERT INTO directors (name, nationality) VALUES ('Guillermo del Toro', 'Mexican');
--- INSERT INTO directors (name, nationality) VALUES ('George Lucas', 'American');
+INSERT INTO directors (name, nationality) VALUES ('Steven Spielberg', 'American');
+INSERT INTO directors (name, nationality) VALUES ('Guillermo del Toro', 'Mexican');
+INSERT INTO directors (name, nationality) VALUES ('George Lucas', 'American');
 
--- --what if u didnt know who the director was eg his id number???--
--- INSERT INTO movies (name, year, director_id) VALUES ('Star Wars IV', 1977, 3);
--- INSERT INTO movies (name, year, director_id) VALUES ('Star Wars V', 1980, 3);
--- INSERT INTO movies (name, year, director_id) VALUES ('E.T.', 1982, 1);
--- INSERT INTO movies (name, year, director_id) VALUES ('Pans Labyrinth', 2006, 2); --what can you do with an apostrophe??--
--- INSERT INTO movies (name, year, director_id) VALUES ('Schindlers List', 1993, 1); --what can you do with an apostrophe??--
+--what if u didnt know who the director was eg his id number???--
+INSERT INTO movies (name, year, director_id) VALUES ('Star Wars IV', 1977, 3);
+INSERT INTO movies (name, year, director_id) VALUES ('Star Wars V', 1980, 3);
+INSERT INTO movies (name, year, director_id) VALUES ('E.T.', 1982, 1);
+INSERT INTO movies (name, year, director_id) VALUES ('Pans Labyrinth', 2006, 2); --what can you do with an apostrophe??--
+INSERT INTO movies (name, year, director_id) VALUES ('Schindlers List', 1993, 1); --what can you do with an apostrophe??--
 
--- SELECT * FROM directors;
--- SELECT * FROM movies;
--- SELECT * FROM movies WHERE director_id = 1;
--- SELECT * FROM movies WHERE director_id = 2;
--- SELECT * FROM movies WHERE director_id = 3;
+SELECT * FROM directors;
+SELECT * FROM movies;
+SELECT * FROM movies WHERE director_id = 1;
+SELECT * FROM movies WHERE director_id = 2;
+SELECT * FROM movies WHERE director_id = 3;
 
 
 
@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS account_types;
 
 
-CREATE TABLE account_types (
+CREATE TABLE account_types ( --this table had to be created first, otherwsie, customer table cudnt form otself without the data)
   id SERIAL PRIMARY KEY, --this means it will increment automatically, and it will keep UNIQUE id numbers--
   type VARCHAR(255)
   );
@@ -58,7 +58,7 @@ CREATE TABLE customers (
   account_type_id INT REFERENCES account_types(id)
 );
 
-CREATE TABLE bank_accounts ( --this table creation goes second becasue the second table is referencing the ids of the first table --
+CREATE TABLE bank_accounts ( --why do i need this table???????? --
   id SERIAL PRIMARY KEY,
   account_type_id INT REFERENCES account_types(id),
   customer_id INT REFERENCES customers(id) 
@@ -75,6 +75,11 @@ INSERT INTO customers (name, dob, account_type_id) VALUES ('Carrie Fisher', '21-
 SELECT * FROM customers;
 SELECT * FROM account_types;
 
--- SELECT account_type_id FROM bank_accounts WHERE customer_id = 1;--
+SELECT * FROM customers WHERE account_type_id = 1;
+SELECT * FROM customers WHERE account_type_id = 2;
+
+
+-- SELECT * FROM bank_accounts WHERE account_type_id = 1;
+-- this isnt returning any value - i dont think this is right???? why do i need a third table???? --
 
 
